@@ -133,3 +133,16 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
+
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#stmp - simple mail transfer protocol -> este un protocol folosit pentru transmiterea de mailuri
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'mail.horiascurtu.ro'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'gruparo33@horiascurtu.ro'
+EMAIL_HOST_PASSWORD = 'Django1234!'
+EMAIL_USE_TLS = True
+
+# TLS -> TRAPORT LAYER SECURITY-> SUNT PROTOCALE CRIPTOGRAFICE CARE VA PERMIT COMUNICATII SIGURE PE INTERNET

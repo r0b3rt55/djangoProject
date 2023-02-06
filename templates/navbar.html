@@ -45,18 +45,32 @@
                 </li>
             </ul>
             {% if user.is_authenticated is False %}
-            <div>
-                <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
-                <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
-            </div>
+                <div>
+                    <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+                    <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+                </div>
             {% else %}
-            <div>
-                <a href="{% url 'logout' %}" class="btn btn-outline-danger"> Logout, {{ user.username }}</a>
-            </div>
-            <form method="get" class="d-flex" role="search" action="{% url 'search' %}">
-                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        My profile, {{ user.username }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+
+                    </ul>
+                </div>
+
+
+                <div>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger"> Logout, {{ user.username }}</a>
+                </div>
+                <form method="get" class="d-flex" role="search" action="{% url 'search' %}">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             {% endif %}
         </div>
     </div>
