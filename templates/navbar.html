@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Django Project</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Intro
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'list_of_cars' %}">List of cars</a></li>
+                        <li><a class="dropdown-item" href="{% url 'list_of_movies' %}">List of movies</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Student
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'create-student' %}">Create student</a></li>
+                        <li><a class="dropdown-item" href="{% url 'list-of-students' %}">List of students</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Trainer
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'create-trainer' %}">Create trainer</a></li>
+                        <li><a class="dropdown-item" href="{% url 'list-of-trainers' %}">List of trainers</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% if user.is_authenticated is False %}
+            <div>
+                <a href="{% url 'login' %}" class="btn btn-outline-success">Login</a>
+                <a href="{% url 'create-user' %}" class="btn btn-outline-secondary">Sign up</a>
+            </div>
+            {% else %}
+            <div>
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger"> Logout, {{ user.username }}</a>
+            </div>
+            <form method="get" class="d-flex" role="search" action="{% url 'search' %}">
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>

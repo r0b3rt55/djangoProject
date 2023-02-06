@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}  Details of {{ student }} {% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <h5 class="card-header">View details of</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title text-center"><strong>First name:</strong> {{ student.first_name }}
+                                </h5>
+                                <h5 class="card-title text-center">Last name: {{ student.last_name }}</h5>
+                                <h5 class="card-title text-center">Trainer: {{ student.trainer }}</h5>
+                                <h5 class="card-title text-center">Course: {{ student.trainer.course }}</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="card-title text-center">email: {{ student.email }}</h5>
+                                <h5 class="card-title text-center">Age: {{ student.age }}</h5>
+                                <h5 class="card-title text-center">Description: {{ student.description }}</h5>
+                                <h5 class="card-title text-center">Gender: {{ student.gender }}</h5>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{% url 'list-of-students' %}" class="btn btn-outline-primary">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

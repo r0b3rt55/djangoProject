@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %} List of trainers {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+     <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filters">
+                        Launch demo modal
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="filters" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="get">
+                                        <div class="card-body">
+                                            {{ filters.as_p }}
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <button type="submit" class="btn btn-outline-success"> Filters</button>
+                                            <a href="{% url 'list-of-trainers' %}" class="btn btn-outline-danger">
+                                                Reset</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Course</th>
+                        <th>Description</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for trainer in trainers %}
+                        <tr>
+                            <td>{{ trainer.first_name }}</td>
+                            <td>{{ trainer.last_name }}</td>
+                            <td>{{ trainer.course }}</td>
+                            <td>{{ trainer.start_date|date:"d-m-Y" }}</td>
+                            <td>{{ trainer.end_date|date:"d-m-Y" }}</td>
+                            <td>
+                                {% if student.trainer %}
+                                    {{ student.trainer.first_name }} {{ student.trainer.last_name }}
+                                {% else %}
+                                    No trainer
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if student.trainer.course %}
+                                    {{ student.trainer.course }}
+                                {% else %}
+                                    No course
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                        more actions
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'update-trainer' trainer.id %}">Update</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'delete-trainer' trainer.id %}">Delete</a></li>
+                                        <li><a class="dropdown-item"
+                                               href="{% url 'details-trainer' trainer.id %}">View</a></li>
+
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="trainer_{{ student.id }}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete - {{ trainer }}</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure to delete {{ trainer }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No
+                                        </button>
+                                        {#                                        <a href="{% url 'delete-trainer-modal' trainer %}" type="button"#}
+                                        TEMA
+                                        class="btn btn-danger">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+{% endblock %}

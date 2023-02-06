@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} List_of_cars {% endblock %}
+
+{% block content %}
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+<table class="table table-primary table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Name of brand</th>
+        <th>Model</th>
+        <th>Color</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for car in all_cars %}
+
+            <tr>
+                <td>{{ car.name_of_brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'list_of_movies' %}" class="btn btn-outline-primary">Go to list of movies </a>
+             </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
