@@ -1,5 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm, UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordResetView
 
 
 class AuthenticationNewForm(AuthenticationForm):
@@ -34,3 +35,12 @@ class PasswordChangeNewForm(PasswordChangeForm):
                                                           'placeholder': 'Please enter your new password'})
         self.fields['new_password2'].widget.attrs.update({'class': 'form-control',
                                                           'placeholder': 'Please enter your new password confirmation'})
+
+
+class PasswordReset(PasswordResetForm):
+    def __init__(self,*args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs.update({'class': 'form-control',
+                                                  'placeholder': 'Please enter your email'})
+
+    #todo stilizare reset si change
