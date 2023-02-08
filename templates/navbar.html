@@ -19,7 +19,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'list_of_cars' %}">List of cars</a></li>
+                        {% if perms.student.add_student %}
                         <li><a class="dropdown-item" href="{% url 'list_of_movies' %}">List of movies</a></li>
+                        {% endif %}
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -29,7 +31,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{% url 'create-student' %}">Create student</a></li>
-                        <li><a class="dropdown-item" href="{% url 'list-of-students' %}">List of students</a></li>
+                            <li><a class="dropdown-item" href="{% url 'list-of-students' %}">List of students</a></li>
                     </ul>
                 </li>
 

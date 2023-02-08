@@ -16,6 +16,7 @@ class StudentCreateView(CreateView):
     template_name = 'student/create_student.html'  # calea catre pagina .html unde va fi afisat formularul
     model = Student
     form_class = StudentForm
+    permission_required = 'student.add_student'
     #success_url = reverse_lazy('home')
 
     def form_valid(self, form):

@@ -13,14 +13,14 @@ class AuthenticationNewForm(AuthenticationForm):
 class UserCreationNewform(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username']
+        fields = ['first_name', 'last_name', 'email', ]
 
     def __init__(self,*args, **kwargs):
         super().__init__(*args,**kwargs)
         self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your firstname'})
         self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your last'})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your email'})
-        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your username'})
+        # self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your username'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your password'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Please enter your confirmation password'})
 
